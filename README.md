@@ -1,134 +1,140 @@
 
 ```markdown
-# 🍌 Image-Based Detection of Chemically Induced Ripening in Fruits
+Image-Based Detection of Chemically Induced Ripening in Fruits
+===============================================================
 
-This project presents a **non-invasive deep learning-based approach** to detect artificially ripened fruits (specifically bananas) using image classification and hybrid feature extraction techniques. It addresses a critical public health issue — the use of harmful chemicals like **calcium carbide** in fruit ripening.
+This project presents a non-invasive deep learning-based approach to detect artificially ripened fruits (specifically bananas) using image classification and hybrid feature extraction techniques. It addresses a critical public health issue — the use of harmful chemicals such as calcium carbide in fruit ripening.
 
----
+-------------------------------------------------------------------------------
 
-## 🔍 Abstract
+Abstract
+--------
 
-The widespread use of chemicals such as **calcium carbide** for artificial ripening of fruits poses a serious health hazard. Traditional detection methods are either manual or lab-based, making them unsuitable for large-scale market screening. This project introduces an **image-based detection system** that uses computer vision and deep learning to automatically differentiate between **naturally** and **chemically ripened bananas**.
+The widespread use of chemicals such as calcium carbide for artificial ripening of fruits poses a serious health hazard. Traditional detection methods are either manual or lab-based, making them unsuitable for large-scale market screening. This project introduces an image-based detection system that uses computer vision and deep learning to automatically differentiate between naturally and chemically ripened bananas.
 
-Using pre-trained models (**InceptionV3** and **EfficientNetB0**) for hybrid feature extraction and a **stacked ensemble** of machine learning classifiers for final prediction, the model achieves accurate classification without chemical testing. Results show high reliability in identifying subtle visual differences caused by artificial ripening.
+Using pre-trained models (InceptionV3 and EfficientNetB0) for hybrid feature extraction and a stacked ensemble of machine learning classifiers for final prediction, the model achieves accurate classification without chemical testing. Results demonstrate strong reliability in identifying subtle visual differences caused by chemical ripening.
 
----
+-------------------------------------------------------------------------------
 
-## 🧠 Technologies Used
+Technologies Used
+-----------------
 
-- **Python 3.10+**
-- **TensorFlow / Keras**
+- Python 3.10+
+- TensorFlow and Keras
   - InceptionV3
   - EfficientNetB0
-- **OpenCV** – Image loading and preprocessing
-- **scikit-learn** – Classifiers, stacking, metrics
-- **XGBoost** – Gradient boosting model
-- **Matplotlib** – Visualization
-- **TQDM** – Progress bar
+- OpenCV (image loading and preprocessing)
+- scikit-learn (classifiers, stacking, evaluation)
+- XGBoost (gradient boosting classifier)
+- Matplotlib (visualization)
+- TQDM (progress display)
 
----
+-------------------------------------------------------------------------------
 
----
+Model Architecture
+------------------
 
-## 📊 Model Architecture
+1. **Feature Extraction**
+   - InceptionV3 and EfficientNetB0 (pre-trained on ImageNet) are used to extract deep features from 299x299 banana images.
+   - Their output vectors are concatenated to form a hybrid feature representation.
 
-### 🔹 Feature Extraction
-- **InceptionV3** and **EfficientNetB0** models (pre-trained on ImageNet) extract deep features from resized banana images (299x299).
-- Their output vectors are concatenated to form a **hybrid feature representation**.
+2. **Classification**
+   - A Stacking Ensemble Classifier is trained using the following base learners:
+     - XGBoost
+     - K-Nearest Neighbors
+     - Logistic Regression
+     - Gradient Boosting
+   - The final estimator is XGBoost.
 
-### 🔹 Classification
-A **Stacking Ensemble Classifier** is trained using:
-- **Base Learners**: XGBoost, K-Nearest Neighbors, Logistic Regression, Gradient Boosting
-- **Final Estimator**: XGBoost
+-------------------------------------------------------------------------------
 
----
+How the System Works
+---------------------
 
-## ⚙️ How It Works
+1. Load images from the dataset folders: `with_carbide/` and `without_carbide/`
+2. Preprocess images using InceptionV3 and EfficientNetB0 preprocessing pipelines.
+3. Extract deep features from each image.
+4. Concatenate feature vectors to form hybrid representations.
+5. Train a stacking classifier on the feature vectors and labels.
+6. Predict new input images using the trained model and display results with confidence scores.
 
-1. **Load Images** from `with_carbide` and `without_carbide` folders
-2. **Preprocess** using Keras preprocessors
-3. **Extract deep features** using InceptionV3 and EfficientNetB0
-4. **Train Stacking Classifier** on hybrid features
-5. **Evaluate model** using accuracy and classification report
-6. **Predict** new banana image with confidence scores and display output
+-------------------------------------------------------------------------------
 
----
+Model Evaluation and Results
+----------------------------
 
-## ✅ Results
+- Overall Model Accuracy: 93.03%
+- Classification Report:
 
-- **Model Accuracy**: ~**XX.XX%**
-- **Classification Report**:
 ```
 
-Precision, Recall, F1-score (for both 'with carbide' and 'without carbide')
+Precision, Recall, F1-score for both classes: 'with carbide' and 'without carbide'
 
-````
+```
 
-### 🔎 Sample Output
+Sample Outputs:
 
-#### 📸 Input Image
-![input](outputs/result_1.jpg)
+Input Image: result_1.jpg  
+Prediction: Without Carbide  
+Confidence: 94.85%
 
-#### ✅ Predicted: Without Carbide  
-**Confidence:** 94.85%
+Input Image: result_2.jpg  
+Prediction: With Carbide  
+Confidence: 91.42%
 
-#### 📸 Input Image
-![input](outputs/result_2.jpg)
+-------------------------------------------------------------------------------
 
-#### ✅ Predicted: With Carbide  
-**Confidence:** 91.42%
+Installation and Running Instructions
+-------------------------------------
 
----
+1. Clone the repository:
+```
 
-## 📦 Installation & Running
-
-### Step 1: Clone Repository
-```bash
-git clone https://github.com/yourusername/FruitRipeningDetection.git
+git clone [(https://github.com/Pratheeka-29/fruit_ripening_detection.git)](https://github.com/Pratheeka-29/fruit_ripening_detection.git)
 cd FruitRipeningDetection
-````
 
-### Step 2: Install Requirements
+```
 
-```bash
+2. Install required libraries:
+```
+
 pip install -r requirements.txt
-```
-
-### Step 3: Train & Predict
-
-* Run `main.ipynb` in Jupyter Notebook
-* OR use Python scripts for batch processing:
-
-```bash
-python model_training.py
-python prediction.py --image test_banana.jpg
-```
-
----
-
-## 📚 References
-
-
-* Pretrained models from `tensorflow.keras.applications`
-
----
-
-## 🔒 Disclaimer
-
-This tool is designed for **research and educational purposes only**. It is not a certified food safety testing tool and should not replace lab-based chemical testing.
-
----
-
-## 👩‍💻 Author
-
-**Pratheeka K G**
-Machine Learning Intern, 2025
-Contact: [pratheekakg@example.com](mailto:pratheekakg@example.com)
-GitHub: [github.com/yourusername](https://github.com/yourusername)
-
----
 
 ````
 
+3. Run the project:
+- Option 1: Use the Jupyter notebook `main.ipynb` to train and evaluate the model.
+- Option 2: Use terminal commands to run scripts:
+  ```
+  python model_training.py
+  python prediction.py --image path_to_image.jpg
+  ```
+
+-------------------------------------------------------------------------------
+
+References
+----------
+
+- Pretrained models from `tensorflow.keras.applications`
+
+-------------------------------------------------------------------------------
+
+Disclaimer
+----------
+
+This tool is developed solely for academic and research purposes. It is not certified for official food safety testing and should not be used as a substitute for chemical laboratory analysis.
+
+-------------------------------------------------------------------------------
+
+Author
+------
+
+Name: Pratheeka K G  
+Role: Machine Learning Intern (2025)  
+Email: pratheekakg@example.com  
+GitHub: https://github.com/Pratheeka-29
+````
+
+---
 
 
