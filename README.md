@@ -1,9 +1,3 @@
-That’s a powerful and socially relevant project — well done! 🎉
-Below is your **detailed `README.md` file**, formatted in professional style for GitHub. You can paste this directly into a file named `README.md` in your project folder in VS Code.
-
----
-
-## 📄 `README.md`
 
 ```markdown
 # 🍌 Image-Based Detection of Chemically Induced Ripening in Fruits
@@ -33,28 +27,6 @@ Using pre-trained models (**InceptionV3** and **EfficientNetB0**) for hybrid fea
 - **TQDM** – Progress bar
 
 ---
-
-## 📁 Project Structure
-
-```
-
-📦 FruitRipeningDetection/
-├── dataset/
-│   ├── with\_carbide/
-│   └── without\_carbide/
-├── main.ipynb
-├── feature\_extraction.py
-├── model\_training.py
-├── prediction.py
-├── stacked\_model.pkl
-├── requirements.txt
-├── README.md
-└── outputs/
-├── result\_1.jpg
-├── result\_2.jpg
-└── ...
-
-```
 
 ---
 
@@ -136,7 +108,7 @@ python prediction.py --image test_banana.jpg
 
 ## 📚 References
 
-* [World Health Organization - Food Safety](https://www.who.int/news-room/fact-sheets/detail/food-safety)
+
 * Pretrained models from `tensorflow.keras.applications`
 
 ---
